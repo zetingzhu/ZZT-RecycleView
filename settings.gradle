@@ -1,0 +1,3 @@
+rootProject.name = "ZZTRecycleViewAdapter"
+include ':app'
+include ':zt-rvadapterhelp'
