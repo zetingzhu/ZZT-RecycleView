@@ -16,7 +16,6 @@ public class AAdapter extends BaseRecyclerAdapter<AEntity, BaseRecyclerViewHolde
         super(data);
     }
 
-
     @Override
     public int getItemLayoutId(int viewType) {
         return R.layout.item_a_test_layout;

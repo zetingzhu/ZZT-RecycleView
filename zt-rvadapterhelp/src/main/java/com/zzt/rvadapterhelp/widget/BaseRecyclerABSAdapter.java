@@ -208,46 +208,46 @@ public abstract class BaseRecyclerABSAdapter<D> extends RecyclerView.Adapter<Rec
     /**
      * 实例化 ViewHolder
      */
-    public RecyclerView.ViewHolder createViewHolder(View view, int viewType) {
-        return new BaseRecyclerViewHolder(view);
-    }
+    public abstract RecyclerView.ViewHolder createViewHolder(View view, int viewType) ;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         View view = LayoutInflater.from(mContext).inflate(getItemLayoutId(viewType), parent, false);
         final RecyclerView.ViewHolder holder = createViewHolder(view, viewType);
-        holder.itemView.setOnClickListener(new OnSignleClickListener() {
-            @Override
-            public void onSignleClick(View v) {
-                if (!isListEmpty(mListenerList)) {
-                    if (delayMillis > 0) {
-                        holder.itemView.postDelayed(() -> {
+        if (holder != null) {
+            holder.itemView.setOnClickListener(new OnSignleClickListener() {
+                @Override
+                public void onSignleClick(View v) {
+                    if (!isListEmpty(mListenerList)) {
+                        if (delayMillis > 0) {
+                            holder.itemView.postDelayed(() -> {
+                                int position = holder.getBindingAdapterPosition();
+                                if (Utils.isNotEmptyDataForList(mData, position)) {
+                                    for (BaseRecyclerItemClickListener<RecyclerView.ViewHolder> ClickListener : mListenerList) {
+                                        ClickListener.onItemClick(holder, position, mData.get(position));
+                                    }
+                                }
+                            }, 200);
+                            int position = holder.getBindingAdapterPosition();
+                            if (mDelayListener != null && Utils.isNotEmptyDataForList(mData, position)) {
+                                mDelayListener.onItemDelayMillis(position, mData.get(position));
+                            }
+                        } else {
                             int position = holder.getBindingAdapterPosition();
                             if (Utils.isNotEmptyDataForList(mData, position)) {
                                 for (BaseRecyclerItemClickListener<RecyclerView.ViewHolder> ClickListener : mListenerList) {
                                     ClickListener.onItemClick(holder, position, mData.get(position));
                                 }
-                            }
-                        }, 200);
-                        int position = holder.getBindingAdapterPosition();
-                        if (mDelayListener != null && Utils.isNotEmptyDataForList(mData, position)) {
-                            mDelayListener.onItemDelayMillis(position, mData.get(position));
-                        }
-                    } else {
-                        int position = holder.getBindingAdapterPosition();
-                        if (Utils.isNotEmptyDataForList(mData, position)) {
-                            for (BaseRecyclerItemClickListener<RecyclerView.ViewHolder> ClickListener : mListenerList) {
-                                ClickListener.onItemClick(holder, position, mData.get(position));
-                            }
-                            if (mDelayListener != null) {
-                                mDelayListener.onItemDelayMillis(position, mData.get(position));
+                                if (mDelayListener != null) {
+                                    mDelayListener.onItemDelayMillis(position, mData.get(position));
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
         return holder;
     }
 

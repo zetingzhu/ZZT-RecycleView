@@ -5,6 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import com.zzt.rvadapterhelp.widget.BaseRecyclerViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         rv_test = findViewById(R.id.rv_test);
         rv_test.setLayoutManager(new LinearLayoutManager(this));
 
-        AAdapter aAdapter = new AAdapter(getList("1"));
+        AAdapter aAdapter = new AAdapter( getList("1"));
         rv_test.setAdapter(aAdapter);
 
 
@@ -33,9 +37,15 @@ public class MainActivity extends AppCompatActivity {
         ABAdapter bAdapter = new ABAdapter(getList("2"));
         rv_test2.setAdapter(bAdapter);
 
+//        View headerView = LayoutInflater.from(this).inflate(R.layout.rv_item_header, rv_test2, false);
+//        bAdapter.addHeaderView(headerView);
+//
+//        View footView = LayoutInflater.from(this).inflate(R.layout.rv_item_foot , rv_test2, false);
+//        bAdapter.addFooterView(footView);
+
         rv_test3 = findViewById(R.id.rv_test3);
         rv_test3.setLayoutManager(new LinearLayoutManager(this));
-        CAdapter cAdapter = new CAdapter(getList("3"));
+        CAdapter cAdapter = new CAdapter(  getList("3"));
         rv_test3.setAdapter(cAdapter);
     }
 

@@ -78,6 +78,11 @@ public abstract class BaseRecyclerHADAdapter<D, VH extends RecyclerView.ViewHold
     }
 
     @Override
+    public RecyclerView.ViewHolder createViewHolder(View view, int viewType) {
+        return new BaseRecyclerViewHolder(view);
+    }
+
+    @Override
     public int getItemViewType(int position) {
         if (isHeaderView(position)) {
             // 返回 header 的 itemType
@@ -133,6 +138,7 @@ public abstract class BaseRecyclerHADAdapter<D, VH extends RecyclerView.ViewHold
             });
         }
     }
+
 
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {

@@ -20,7 +20,7 @@ public abstract class BaseRecyclerAdapter<D, VH extends RecyclerView.ViewHolder>
 
     @Override
     public RecyclerView.ViewHolder createViewHolder(View view, int viewType) {
-        return (VH) new BaseRecyclerViewHolder(view);
+        return new BaseRecyclerViewHolder(view);
     }
 
     @Override

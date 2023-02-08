@@ -1,7 +1,10 @@
 package com.zzt.rvadapterhelp;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.zzt.rvadapterhelp.widget.BaseRecyclerAdapter;
 import com.zzt.rvadapterhelp.widget.BaseRecyclerViewHolder;
@@ -23,12 +26,17 @@ public class CAdapter extends BaseRecyclerAdapter<AEntity, CAdapter.CVH> {
     }
 
     @Override
+    public RecyclerView.ViewHolder createViewHolder(View view, int viewType) {
+        return new CVH(view);
+    }
+
+    @Override
     protected void bindTheData(CVH holder, AEntity data) {
         TextView textView = holder.get(R.id.textView);
         textView.setText(data.getTitle());
     }
 
-    class CVH extends BaseRecyclerViewHolder {
+    public class CVH extends BaseRecyclerViewHolder {
 
         public CVH(View itemView) {
             super(itemView);
