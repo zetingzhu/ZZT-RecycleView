@@ -18,10 +18,17 @@ project(':ztTools').projectDir = new File("zt-u1/ZZTUtilCode/zztToolsLibrary")
 
 
 3. 克隆跟新
-a) git submodule update --init --recursive
-b) git clone --recurse-submodules
-c) git pull origin master   
-   
+1)git submodule update --init --recursive
+2)git pull
+3)git submodule update
+
+# 开发者B
+cd MainProject
+git pull # 主模块远程更新合并到本地。
+git submodule update --remote --merge #子模块远程更新合并到本地
+# 或者
+cd $submodule_dir; git fetch; git merge origin/master # 拉取子模块更新
+  
 
 4. 查看当前submodule 版本提交信息
 $ git submodule status
