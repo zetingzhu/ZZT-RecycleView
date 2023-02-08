@@ -23,3 +23,11 @@ $ git submodule status
 
 5. 更新最新版本
 $ git submodule update zt-util/ZZTUtilCode 
+
+
+6. 卸载删除 submodule
+a) 卸载 submodule
+$ git submodule deinit -f zt-util
+b) 删除目录
+$ git rm -r zt-util
+
