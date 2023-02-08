@@ -1,3 +1,5 @@
 rootProject.name = "ZZTRecycleViewAdapter"
 include ':app'
 include ':zt-rvadapterhelp'
+include ':ztSub'
+project(':ztSub').projectDir = new File("ztSub1/ZZTSubmodul/SubLib")

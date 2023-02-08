@@ -1,0 +1,3 @@
+[submodule "ztSub1/ZZTSubmodul"]
+	path = ztSub1/ZZTSubmodul
+	url = https://github.com/zetingzhu/ZZTSubmodul.git
