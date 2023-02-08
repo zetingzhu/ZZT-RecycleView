@@ -17,12 +17,29 @@ include(':ztTools')
 project(':ztTools').projectDir = new File("zt-u1/ZZTUtilCode/zztToolsLibrary")
 
 
+# 创建
+cd MainProject # 主模块
+git submodule add  $submodule_url $submodule_dir  #添加子模块
+git add .
+git commit -m "add submodule" # 提交修改
+git push origin master # 推送到主项目远程
+
+
 3. 克隆跟新
 1)git submodule update --init --recursive
 2)git pull
 3)git submodule update
 
-# 开发者B
+# 克隆
+git clone $main_project_url
+cd MainProject # 进入主项目，发现submodule_dir是一个空目录
+git submodule init # 初始化submodule配置，从.gitmodule读取相关配置
+git submodule update # 拉取submodule代码到submodule_dir目录 #git submodule update --remote --merge 下面会讲到
+# 上面2行代码可以用下面这1行代替：
+git submodule update --init # 如果子模块还包含子模块，可以加--recursive
+
+
+# 更新
 cd MainProject
 git pull # 主模块远程更新合并到本地。
 git submodule update --remote --merge #子模块远程更新合并到本地
@@ -39,9 +56,9 @@ $ git submodule update zt-util/ZZTUtilCode
 
 6. 卸载删除 submodule
 a) 卸载 submodule
-$ git submodule deinit -f zt-util
+$ git submodule deinit -f ztSub1
 b) 删除目录
-$ git rm -r -f zt-util
+$ git rm -r -f ztSub1
 c)
 删除 .gitmodules 文件
 d）
